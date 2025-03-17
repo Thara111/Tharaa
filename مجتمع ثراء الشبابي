@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة الاسم إلى التصميم</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        canvas { border: 2px solid #000; margin-top: 10px; max-width: 100%; }
+        input, button { margin-top: 10px; padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h2>أدخل اسمك ليتم إضافته إلى التصميم</h2>
+    <input type="text" id="nameInput" placeholder="اكتب اسمك هنا">
+    <button onclick="updateDesign()">إضافة الاسم</button>
+    <br>
+    <canvas id="designCanvas" width="500" height="500"></canvas>
+    <br>
+    <button onclick="downloadImage()">تحميل الصورة</button>
+    
+    <script>
+        let canvas = document.getElementById('designCanvas');
+        let ctx = canvas.getContext('2d');
+        let image = new Image();
+        image.src = 'design.png'; // غيري هذا باسم صورتك
+        image.onload = function() {
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        };
+
+        function updateDesign() {
+            let name = document.getElementById('nameInput').value;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+            ctx.font = '30px Arial';
+            ctx.fillStyle = 'white'; // يمكنك تغيير اللون
+            ctx.textAlign = 'center';
+            ctx.fillText(name, canvas.width / 2, canvas.height - 50);
+        }
+
+        function downloadImage() {
+            let link = document.createElement('a');
+            link.download = 'design-with-name.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    </script>
+</body>
+</html>
