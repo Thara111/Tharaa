@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بطاقات مخصصة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .card {
+            width: 300px;
+            height: 180px;
+            background-image: url('https://via.placeholder.com/300x180'); /* استبدليها بالصورة الخاصة بك */
+            background-size: cover;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 5px black;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>اكتب اسمك ليظهر على البطاقة ✨</h2>
+    <input type="text" id="nameInput" placeholder="اكتب اسمك هنا">
+    <button onclick="updateCard()">إظهار الاسم</button>
+
+    <div class="card" id="nameCard">
+        اسمك هنا
+    </div>
+
+    <script>
+        function updateCard() {
+            let name = document.getElementById("nameInput").value;
+            if (name.trim() !== "") {
+                document.getElementById("nameCard").textContent = name;
+            } else {
+                alert("الرجاء إدخال اسم!");
+            }
+        }
+    </script>
+
+</body>
+</html>
